@@ -20,8 +20,13 @@ $requested_path = $_SERVER['REQUEST_URI'];
 if (isset($routes[$requested_path])) {
     $func_name = $routes[$requested_path];
     if (function_exists($func_name)) {
-        //handle flash messages
+
         call_user_func($func_name);
+        //clean csrf tokens
+        clean_csrf_tokens();
+        
+        //handle flash messages
+        //TODO: fix flash messages
         if (isset($_SESSION['flash_message'])) {
             ?> 
                 <div style="position: fixed; left: 10px; top: 5px; background-color: lightgray; z-index: 1000;" class="notification">
@@ -29,7 +34,10 @@ if (isset($routes[$requested_path])) {
                     <?= $_SESSION['flash_message'] ?>
                 </div>
             <?php
-            unset($_SESSION['flash_message']); // Clear the session variable
+        unset($_SESSION['flash_message']); // clear the flash message session variable
+        
+        
+
         }
     } else {
         echo "404 - Page not found (no func)";
