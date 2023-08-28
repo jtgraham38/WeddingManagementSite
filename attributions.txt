@@ -1,0 +1,5 @@
+roses_top.png + roses_bottom.png:       https://pngtree.com/freepng/white-rose-bouquet-clipart-for-wedding-invitation-decoration_6506942.html
+gold_corner_decoration.png:             https://pnghut.com/png/xPwUPZxk22/ornament-clip-art-body-jewelry-floral-corner-transparent-png
+
+script_font.ttf                         https://www.fontspace.com/chopin-script-font-f1995
+main_font.otf                           https://www.fontspace.com/open-baskerville-font-f13354

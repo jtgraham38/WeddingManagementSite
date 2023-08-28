@@ -1,0 +1,64 @@
+/* create fonts */
+@font-face {
+    font-family: 'baskerville'; /* give your font a name */
+    src: url('../fonts/main_font.otf') format('opentype');
+}
+
+
+@font-face {
+    font-family: 'fancy_script'; /* give your font a name */
+    src: url('../fonts/script_font.ttf') format('truetype');
+}
+
+/* create fonts */
+/* broadly set fonts */
+body{
+    font-family: 'baskerville', sans-serif;
+}
+
+.script{
+    font-family: 'fancy_script', sans-serif;
+}
+/* broadly set fonts */
+/* main layout styling */
+.body_container{
+    position: relative;
+    padding: 12%;
+}
+
+.main_corner_decoration{
+    max-width: 20%;
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+}
+
+.main_corner_decoration.tl{
+    left: 0;
+    top: 0;
+    transform: scale(-1, -1);
+}
+
+.main_corner_decoration.tr{
+    right: 0;
+    top: 0;
+    transform: scaleY(-1);
+}
+
+.main_corner_decoration.bl{
+    left: 0;
+    bottom: 0;
+    transform: scaleX(-1);
+}
+
+.main_corner_decoration.br{
+    right: 0;
+    bottom: 0;
+}
+/* main layout styling */
+/* navbar styling */
+#main_nav.navbar-menu{
+    justify-content: space-around;
+}
+
+/* navbar styling */
