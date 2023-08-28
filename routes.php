@@ -353,7 +353,7 @@ function handle_event(){
         //check if the event already exists
         if (!$_POST['event_id']){
             //if this is a new event being added
-            $query = 'INSERT INTO  calendar_items (start_datetime, end_datetime, name, description, location) VALUES (?, ?, ?, ?, ?);';
+            $query = 'INSERT INTO calendar_items (start_datetime, end_datetime, name, description, location) VALUES (?, ?, ?, ?, ?);';
             query($query, [$_POST['start_date'], $_POST['end_date'], $_POST['name'], $_POST['desc'], $_POST['location']]);
 
             $_SESSION['flash_message'] = "Event added!";
@@ -387,7 +387,7 @@ function handle_delete_event(){
         }
 
         //delete the event
-        $query = 'DELETE FROM calendar_items WHERE id = ?;';
+        $query = 'DELETE FROM calendar_items WHERE id = ? AND name != "Wedding Day";';
         query($query, [$_POST['event_id']]);
 
         $_SESSION['flash_message'] = "Event deleted!";

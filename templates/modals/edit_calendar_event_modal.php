@@ -1,14 +1,17 @@
-<dialog id="edit_event_<?= $event['event_id'] ?>_modal" style="padding: 2rem; border-radius: 0.2rem;">
+<dialog id="edit_event_<?= $event['id'] ?>_modal" style="padding: 2rem; border-radius: 0.2rem;">
     <form method="POST" action="/handle_add_event">
         <h3 class="title">Edit Event</h3>
         <hr>
-
-        <div class="field">
-            <label class="label">Event Name</label>
-            <div class="control">
-                <input name="name" value="<?= $event['name'] ?>" class="input" type="text" placeholder="Event Name" required>
+        <?php if ($event['name'] != 'Wedding Day'){ ?>
+            <div class="field">
+                <label class="label">Event Name</label>
+                <div class="control">
+                    <input name="name" value="<?= $event['name'] ?>" class="input" type="text" placeholder="Event Name" required>
+                </div>
             </div>
-        </div>
+        <?php } else {?>
+            <input type="hidden" name="name" value="Wedding Day">
+        <?php } ?>
 
         <div class="field">
             <label class="label"><?= $wedding_event ? 'Description' : 'Wedding Description' ?></label>
@@ -38,7 +41,7 @@
             </div>
         </div>
 
-        <input id="event_id_hidden_input" type="hidden" name="event_id" value="<?= $event['event_id'] ?>">
+        <input id="event_id_hidden_input" type="hidden" name="event_id" value="<?= $event['id'] ?>">
         <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
 
         <div class="field is-grouped">
@@ -46,10 +49,8 @@
                 <button class="button is-link" type="submit">Update Event</button>
             </div>
             <div class="control">
-                <button class="button is-light" type="button" onclick="edit_event_<?= $event['event_id'] ?>_modal.close();">Cancel</button>
+                <button class="button is-light" type="button" onclick="edit_event_<?= $event['id'] ?>_modal.close();">Cancel</button>
             </div>
         </div>
     </form>
 </dialog>
-
-TODO: add support for autofilling the previous values of each input when editing

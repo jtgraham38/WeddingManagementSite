@@ -14,6 +14,7 @@
         <?php } else {?>
             <input type="hidden" name="name" value="Wedding Day">
         <?php } ?>
+        <?php unset($wedding_event); ?>
 
         <div class="field">
             <label class="label"><?= $wedding_event ? 'Description' : 'Wedding Description' ?></label>

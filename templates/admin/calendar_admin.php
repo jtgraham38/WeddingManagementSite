@@ -27,15 +27,18 @@
             <div class="columns">
                 <h4 class="column is-size-4"><?= $event['name'] ?></h4>
 
-                <?php /* include('./templates/modals/edit_calendar_event_modal.php'); */ ?>
+                <?php include('./templates/modals/edit_calendar_event_modal.php'); ?>
 
                 <div class="column is-flex is-justify-content-end">
-                    <button class="button edit_event_btn" style="margin-right: 1px;" onclick="edit_event_<?= $event['event_id'] ?>_modal.showModal()">Edit</button>
-                    <form action="/handle_delete_event" method="POST">
-                        <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
-                        <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
-                        <button class="button delete_event_btn" type="submit">Delete</button>
-                    </form>
+                    <button class="button edit_event_btn" style="margin-right: 1px;" onclick="edit_event_<?= $event['id'] ?>_modal.showModal()">Edit</button>
+                    
+                    <?php if ($event['name'] != "Wedding Day") {?>
+                        <form action="/handle_delete_event" method="POST">
+                            <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
+                            <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+                            <button class="button delete_event_btn" type="submit">Delete</button>
+                        </form>
+                    <?php } ?>
                     
                 </div>
             </div>
