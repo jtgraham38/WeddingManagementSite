@@ -25,7 +25,8 @@ function validate_csrf_token(){
 }
 
 function clean_csrf_tokens(){
-    $new = [];
+    $new = [];  //TODO: this is imperfect, some tokens get cleaned too soon!
+    
     foreach ($_SESSION['csrf_tokens'] as $i=>$pair){
         $life = $pair[1];
         //var_dump($pair);

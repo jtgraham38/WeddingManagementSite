@@ -127,7 +127,7 @@ function setup_admin(){
     include('./templates/admin/setup.php');
 }
 
-//admin screens TODO: i need to protect these pages with admin access!
+//admin screens
 function admin_dashboard(){
     //include dashboard template
 
@@ -151,7 +151,7 @@ function details_settings(){
         return;
     }
 
-    //get setup admin page
+    //get details admin page
     ob_start();
     include('./templates/admin/details_admin.php');
     $content = ob_get_contents();
@@ -169,7 +169,11 @@ function guest_list_settings(){
         return;
     }
 
-    $content = "Guest List (need ability to add/remove other admins here)";
+    //get guest list admin page
+    ob_start();
+    include('./templates/admin/guest_list_admin.php');
+    $content = ob_get_contents();
+    ob_end_clean();
 
     include('./templates/admin/admin.php');
 }
