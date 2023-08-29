@@ -559,6 +559,14 @@ function handle_toggle_admin(){
             return;
         }
 
+        //ensure there is at least one admin
+        $query = 'SELECT COUNT(*) FROM guests WHERE admin = TRUE;';
+        if (intval(query($query)[0]['COUNT(*)']) <= 1 && !isset($_POST['is_admin'])){
+            $_SESSION['flash_message'] = "There must be at least one admin!";
+            header("Location: /dashboard/guest-list");
+            return;
+        }
+
         //update user record, toggling admin
         foreach ($_POST as $key=>$value){
             if ($key != 'csrf_token'){

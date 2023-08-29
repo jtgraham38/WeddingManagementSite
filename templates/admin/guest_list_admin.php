@@ -1,6 +1,6 @@
 
 <h1 class="title">Guest List</h1>
-<h4 class="subtitle is-italic has-text-weight-light ">Here is the list of people who have RSVP'd so far!</h4>
+<h4 class="subtitle is-italic has-text-weight-light ">People who have RSVP'd so far!</h4>
 
 <br>
 
