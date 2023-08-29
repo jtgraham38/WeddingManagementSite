@@ -34,7 +34,14 @@
             <td><?=$guest['lname'] ?></td>
             <td><a href="mailto: <?=$guest['email'] ?>"><?=$guest['email'] ?></a></td>
             <td><a href="tel:<?=$guest['phone'] ?>"><?=$guest['phone'] ?></a></td>
-            <td><?= $guest['attending'] ? "yes" : "no" ?></td>
+            <td>
+            
+                <form method="POST" action="/handle_toggle_attending">
+                    <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
+                    <input type="hidden" name="guest_id" value="<?= $guest['id']; ?>">
+                    <input onChange="this.form.submit()" type="checkbox" name="is_attending" <?= $guest['attending'] ? "checked" : ""?>>
+                </form>
+            </td>
             <td>
                 <form method="POST" action="/handle_toggle_admin">
                     <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
@@ -52,7 +59,7 @@
         <th></th>
         <th></th>
         <th></th>
-        <th>Guests: <?= count($guests); ?></th>
+        <th>Guests: <?= $attending_count; ?></th>
         <th>Admins: <?= $admin_count ?></th>
       
     </tr>
