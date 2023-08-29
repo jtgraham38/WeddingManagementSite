@@ -26,6 +26,7 @@ $routes = [
     '/handle_delete_event'  =>  'handle_delete_event',
     '/handle_update_settings' => 'handle_settings',
     '/handle_rsvp'          =>    'handle_rsvp',
+    '/handle_toggle_admin'  => 'handle_toggle_admin',
 ];
 
 //define handler functions
@@ -539,6 +540,44 @@ function handle_rsvp() {
     }
 }
 
+function handle_toggle_admin(){
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        //ensure csrf protection
+        if (!validate_csrf_token()){
+            $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
+            header("Location: /");
+            return;
+        }
+
+        //ensure user is admin
+        if (!is_admin()){
+            $_SESSION['flash_message'] = "You don't have permission to view that page!";
+            header('Location: /');
+            return;
+        }
+
+        //update user record, toggling admin
+        foreach ($_POST as $key=>$value){
+            if ($key != 'csrf_token'){
+                $query = 'UPDATE guests SET admin = ? WHERE id=?;';
+                query($query, [$_POST['is_admin'] ? 1 : 0, $_POST['guest_id']]);
+                break;
+            }
+        }
+        
+
+        //redirect on success
+        $_SESSION['flash_message'] = "User permissions adjusted!";
+        header('Location: /dashboard/guest-list');
+        return;
+    }else{
+        $_SESSION['flash_message'] = "That method is not allowed!";
+        header("Location: /dashboard/details");
+        return;
+    }
+}
 
 
 ?>

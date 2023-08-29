@@ -32,11 +32,15 @@
         <tr>
             <td><?=$guest['fname'] ?></th>
             <td><?=$guest['lname'] ?></td>
-            <td><?=$guest['email'] ?></td>
-            <td><?=$guest['phone'] ?></td>
+            <td><a href="mailto: <?=$guest['email'] ?>"><?=$guest['email'] ?></a></td>
+            <td><a href="tel:<?=$guest['phone'] ?>"><?=$guest['phone'] ?></a></td>
             <td><?= $guest['attending'] ? "yes" : "no" ?></td>
             <td>
-                <input type="checkbox" name="<?= $guest['id']; ?>_is_admin" <?=$guest['admin'] ? "checked" : ""?>>
+                <form method="POST" action="/handle_toggle_admin">
+                    <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
+                    <input type="hidden" name="guest_id" value="<?= $guest['id']; ?>">
+                    <input onChange="this.form.submit()" type="checkbox" name="is_admin" <?=$guest['admin'] ? "checked" : ""?>>
+                </form>
             </td>
         </tr>
     <?php } ?>
