@@ -6,6 +6,7 @@ $routes = [
     '/calendar' => 'calendar',
     '/photos' => 'photos',
     '/registry' => 'registry',
+    '/rsvp' => 'rsvp',
 
     //handlers for admin
     '/setup-admin'     => 'setup_admin',
@@ -23,7 +24,8 @@ $routes = [
     '/handle_logout'       => 'handle_logout',
     '/handle_add_event'     =>  'handle_event',
     '/handle_delete_event'  =>  'handle_delete_event',
-    '/handle_update_settings' => 'handle_settings'
+    '/handle_update_settings' => 'handle_settings',
+    '/handle_rsvp'          =>    'handle_rsvp',
 ];
 
 //define handler functions
@@ -80,6 +82,24 @@ function registry(){
     }
 
     $content = "REGISTRY";
+
+    //include main template
+    include('./templates/main.php');
+}
+
+function rsvp(){
+    //set content of page
+    $query = 'SELECT COUNT(*) FROM guests WHERE admin = TRUE;';
+    if (intval(query($query)[0]['COUNT(*)']) < 1){
+        header("Location: /setup-admin");
+        return;
+    }
+
+    //get rsvp content
+    ob_start();
+    include('./templates/pages/rsvp.php');
+    $content = ob_get_contents();
+    ob_end_clean();
 
     //include main template
     include('./templates/main.php');
@@ -243,7 +263,7 @@ function handle_setup_admin(){
         $id = query($query, [$_POST['email']])[0]['id'];
 
         //update session of current user to log them in
-        $_SESSION['flash_message'] = "Welcome, " . $record['fname'] . " " . $record['lname'] . "!";
+        $_SESSION['flash_message'] = "Welcome, " . $_POST['fname'] . " " . $_POST['lname'] . "!";
         $_SESSION['user_id'] = $id;
         $_SESSION['is_admin'] = 1;
         $_SESSION['fname'] = $_POST['fname'];
@@ -458,4 +478,63 @@ function handle_settings(){
         return;
     }
 }
+
+function handle_rsvp() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        //ensure csrf protection
+        if (!validate_csrf_token()){
+            $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
+            header("Location: /");
+            return;
+        }
+
+        //validate rsvp_key
+        if ($_POST['rsvp_key'] != get_setting('rsvp_key')){
+            $_SESSION['flash_message'] = "Incorrect RSVP code!";
+            header("Location: /rsvp");
+            return;
+        }
+
+        //ensure passwords match and are long enouch
+        if (strlen($_POST['password']) < 5){
+            $_SESSION['flash_message'] = "That password is too short!";
+            header("Location: /rsvp");
+            return;
+        }
+        else if ($_POST['password'] != $_POST['confirm_password']){
+            $_SESSION['flash_message'] = "Those passwords do not match!";
+            header("Location: /rsvp");
+            return;
+        }
+
+        //insert user into db
+        $query = 'INSERT INTO guests (fname, lname, email, password_hash, phone, attending, admin) VALUES (?, ?, ?, ?, ?, 1, 0);';
+        query($query, [$_POST['fname'], $_POST['lname'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['phone'] ]);
+
+        if (!logged_in()){
+            //get id
+            $query = 'SELECT id FROM guests WHERE email = ?;';
+            $id = query($query, [$_POST['email']])[0]['id'];
+
+            //log user in
+            $_SESSION['flash_message'] = "Welcome, " . $record['fname'] . " " . $record['lname'] . "!";
+            $_SESSION['user_id'] = $id;
+            $_SESSION['is_admin'] = 0;
+            $_SESSION['fname'] = $_POST['fname'];
+            $_SESSION['lname'] = $_POST['lname'];
+        }
+
+        //redirect on success
+        $_SESSION['flash_message'] = "Your RSVP was successful!";
+        header('Location: /rsvp');
+        return;
+    }else{
+        $_SESSION['flash_message'] = "That method is not allowed!";
+        header("Location: /dashboard/details");
+        return;
+    }
+}
+
+
+
 ?>

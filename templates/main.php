@@ -92,7 +92,7 @@
 
                 <a class="navbar-item is-size-3" href="/home">Details</a>
                 <a class="navbar-item is-size-3" href="/calendar">Calendar</a>
-                <a class="navbar-item is-size-3" href="/calendar">RSVP</a>
+                <a class="navbar-item is-size-3" href="/rsvp">RSVP</a>
                 <a class="navbar-item is-size-3" href="/photos">Photos</a>
                 <a class="navbar-item is-size-3" href="/registry">Registry</a>
 
@@ -132,7 +132,7 @@
             <img class="main_corner_decoration tl"src="/static/images/gold_corner_decoration.png" alt="gold corner decoration">
             <img class="main_corner_decoration tr"src="/static/images/gold_corner_decoration.png" alt="gold corner decoration">
             
-            <article>
+            <article style="padding: 1rem;">
                 <?= $content ?>
             </article>
 
@@ -147,7 +147,9 @@
     </footer>
     <div id="login_logout" style="position: fixed; right: 10px; top: 10px; padding: 0;">
         <?php if (logged_in()){ ?>
-            <a class="button box" href="/dashboard" style="margin-right: 1px">Dashboard</a>
+            <?php if (is_admin()) { ?>
+                <a class="button box" href="/dashboard" style="margin-right: 1px">Dashboard</a>
+            <?php } ?>
             <a class="button box" href="/handle_logout">Logout</a>
         <?php } else{ ?>
             <button class="button box" onclick="login_modal.showModal();">Login</button>

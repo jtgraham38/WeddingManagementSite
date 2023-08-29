@@ -39,7 +39,7 @@ if (isset($routes[$requested_path])) {
                 <?php
                 unset($_SESSION['flash_message']); // clear the flash message session variable
             }
-        }
+        }   //TODO: consider clearing out csrf tokens with this "handle" method too!
     } else {
         echo "404 - Page not found (no func)";
     }
