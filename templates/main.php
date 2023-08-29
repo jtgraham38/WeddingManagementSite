@@ -17,7 +17,67 @@
             <div class="script couple_names" style="font-size: 5rem;">
                 <span class="bride_name"><?= get_setting('bride_fname'); ?></span> & <span class="groom_name"><?= get_setting('groom_fname'); ?></span> 
             </div>
-            <div class="countdown is-size-4">(Countdown here!)</div>
+            <div id="countdown" class="is-size-4"></div>
+
+            <script>
+                //program countdown js
+
+                //update countdown func
+                function update_countdown(){
+                    const wedding_date = new Date(wedding_date_str).getTime();
+
+                    //get time until wedding
+                    var time_until = wedding_date - new Date().getTime()
+
+                    //convert to days, hours, minutes, and seconds 
+                    //TODO: account for leap years!
+                    var days = Math.floor(time_until / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((time_until % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((time_until % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((time_until % (1000 * 60)) / 1000);
+
+                    //update countdown element
+                    if (time_until >= 0){
+                        document.querySelector('#countdown').innerHTML = days + ' days, ' + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds until the big day!";
+                    }else{
+                        document.querySelector('#countdown').innerHTML = "Congratulations on getting married!"
+                    }
+                }
+
+                //date we are counting down to 
+                <?php 
+                $date_record = query("SELECT start_datetime FROM calendar_items WHERE name = 'Wedding Day';")[0]['start_datetime'];
+                if ($date_record != null){
+                    $wedding_date = new DateTime($date_record);
+                }
+                else{
+                    $wedding_date = null;
+                }
+                
+                ?>
+                const wedding_date_str = '<?= $wedding_date ? $wedding_date->format('M d, Y H:i:s') : "" ?>'
+
+                //if the wedding date is set
+                if (wedding_date_str != ""){
+                    
+                    update_countdown();
+                    //update every second
+                    var countdown = setInterval(update_countdown, 1000)
+                }
+                //otherwise, if it is not set
+                else{
+                    document.querySelector('#countdown').innerHTML = "The date for the wedding has not been decided yet!"
+                }
+
+                
+                
+
+                
+                
+
+
+            </script>
+            
             <div class="tagline is-size-5"><?= get_setting('tagline'); ?></div>
         </div>
 
