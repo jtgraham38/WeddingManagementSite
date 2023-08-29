@@ -40,6 +40,7 @@
                     if (time_until >= 0){
                         document.querySelector('#countdown').innerHTML = days + ' days, ' + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds until the big day!";
                     }else{
+                        clearInterval(countdown)
                         document.querySelector('#countdown').innerHTML = "Congratulations on getting married!"
                     }
                 }
@@ -56,26 +57,19 @@
                 
                 ?>
                 const wedding_date_str = '<?= $wedding_date ? $wedding_date->format('M d, Y H:i:s') : "" ?>'
+                var countdown = null;
 
                 //if the wedding date is set
                 if (wedding_date_str != ""){
                     
                     update_countdown();
                     //update every second
-                    var countdown = setInterval(update_countdown, 1000)
+                    countdown = setInterval(update_countdown, 1000)
                 }
                 //otherwise, if it is not set
                 else{
                     document.querySelector('#countdown').innerHTML = "The date for the wedding has not been decided yet!"
                 }
-
-                
-                
-
-                
-                
-
-
             </script>
             
             <div class="tagline is-size-5"><?= get_setting('tagline'); ?></div>
