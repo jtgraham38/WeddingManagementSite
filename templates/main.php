@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jacob and Grace's Wedding</title>
+    <title><?= get_setting('groom_fname') ?> and <?= get_setting('bride_fname') ?>'s Wedding </title>
 
     <link rel="stylesheet" type="text/css" href="/static/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -12,13 +12,13 @@
 <body class="container">
     <header>
         <img src="/static/images/roses_top.png" alt="bundle of white roses">
-
+        
         <div class="wedding_intro has-text-centered">
             <div class="script couple_names" style="font-size: 5rem;">
-                <span class="bride_name">Grace</span> & <span class="groom_name">Jacob</span> 
+                <span class="bride_name"><?= get_setting('bride_fname'); ?></span> & <span class="groom_name"><?= get_setting('groom_fname'); ?></span> 
             </div>
             <div class="countdown is-size-4">(Countdown here!)</div>
-            <div class="tagline is-size-5">Put an inspirational tagline here... like maybe a bible verse?</div>
+            <div class="tagline is-size-5"><?= get_setting('tagline'); ?></div>
         </div>
 
         <hr>

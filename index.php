@@ -10,6 +10,7 @@ include('./helpers/db_connection.php');
 include('./helpers/csrf_token.php');
 include('./helpers/authorization.php');
 include('./helpers/format_date.php');
+include('./helpers/settings.php');
 //TODO: add validation to make sure all inputs received from forms are not larger than the cols they are going to be entered in to
 
 //include routes
