@@ -33,7 +33,7 @@
     <div class="field">
         <label class="label">Your Password</label>
         <div class="control">
-            <input name="password" id="password" class="input" type="password" placeholder="Your Password" required>
+            <input name="password" id="password" class="input" type="password" placeholder="Choose Your Password" required>
         </div>
     </div>
 
