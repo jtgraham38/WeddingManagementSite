@@ -15,7 +15,6 @@ $routes = [
     '/dashboard/calendar'    =>  'calendar_settings',
     '/dashboard/photos'    =>  'photos_settings',
     '/dashboard/registry'    =>  'registry_settings',
-    '/dashboard/sitewide'    =>  'sitewide_settings',
 
 
     //handlers for forms
@@ -197,20 +196,6 @@ function registry_settings(){
     }
 
     $content = "Registry";
-
-    include('./templates/admin/admin.php');
-}
-
-function sitewide_settings(){
-    //return sitewide settings
-
-    if (!is_admin()){
-        $_SESSION['flash_message'] = "You don't have permission to view that page!";
-        header('Location: /');
-        return;
-    }
-
-    $content = "Sitewide";
 
     include('./templates/admin/admin.php');
 }

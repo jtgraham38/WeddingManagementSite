@@ -31,9 +31,6 @@
             <li>
                 <a href="/dashboard/registry" class="<?= $_SERVER['REQUEST_URI'] == '/dashboard/registry' ? 'is-active' : ''?>">Registry</a>
             </li>
-            <li>
-                <a href="/dashboard/sitewide" class="<?= $_SERVER['REQUEST_URI'] == '/dashboard/sitewide' ? 'is-active' : ''?>">Sitewide</a>
-            </li>
         </ul>
 
         <p class="menu-label">
