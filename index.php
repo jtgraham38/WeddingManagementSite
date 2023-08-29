@@ -27,17 +27,16 @@ if (isset($routes[$requested_path])) {
         
         //handle flash messages
         //TODO: fix flash messages
-        if (isset($_SESSION['flash_message'])) {
+        echo $_SESSION['flash_message'];
+        if ($_SESSION['flash_message']) {
             ?> 
                 <div style="position: fixed; left: 10px; top: 5px; background-color: lightgray; z-index: 1000;" class="notification">
                     <button class="delete" onclick="event.target.parentNode.remove()"></button>
                     <?= $_SESSION['flash_message'] ?>
                 </div>
             <?php
-        unset($_SESSION['flash_message']); // clear the flash message session variable
-        
-        
-
+            unset($_SESSION['flash_message']); // clear the flash message session variable
+            //^ TODO: this line causes flash messages not to work
         }
     } else {
         echo "404 - Page not found (no func)";

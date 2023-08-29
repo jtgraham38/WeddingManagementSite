@@ -24,6 +24,7 @@ $routes = [
     '/handle_logout'       => 'handle_logout',
     '/handle_add_event'     =>  'handle_event',
     '/handle_delete_event'  =>  'handle_delete_event',
+    '/handle_update_settings' => 'handle_settings'
 ];
 
 //define handler functions
@@ -131,7 +132,11 @@ function details_settings(){
         return;
     }
 
-    $content = "Details";
+    //get setup admin page
+    ob_start();
+    include('./templates/admin/details_admin.php');
+    $content = ob_get_contents();
+    ob_end_clean();
 
     include('./templates/admin/admin.php');
 }
@@ -339,13 +344,29 @@ function handle_event(){
             //header("Location: /");
             return;
         }
+        
+        //ensure user is admin
+        if (!is_admin()){
+            $_SESSION['flash_message'] = "You don't have permission to view that page!";
+            header('Location: /');
+            return;
+        }
 
-        //TODO: ensure end date is after start date!
+        //validate start dates TODO: ensure dates are in future
         $start_date = new DateTime($_POST['start_date']);
         $end_date = new DateTime($_POST['end_date']);
         if ($start_date > $end_date){
             //if the start date entered was after the entered end date
             $_SESSION['flash_message'] = "The end date must be after the start date!";
+            header("Location: /dashboard/calendar");
+            return;
+        }
+
+        //validate that both dates are in the future
+        $now = new DateTime();
+        if ($start_date < $now || $end_date < $now){
+            //if the start or end date is before now
+            $_SESSION['flash_message'] = "Both dates must be in the future!";
             header("Location: /dashboard/calendar");
             return;
         }
@@ -386,6 +407,13 @@ function handle_delete_event(){
             return;
         }
 
+        //ensure user is admin
+        if (!is_admin()){
+            $_SESSION['flash_message'] = "You don't have permission to view that page!";
+            header('Location: /');
+            return;
+        }
+
         //TODO: handle direct post to this endpoint to delete "Wedding Day" event
 
         //delete the event
@@ -393,14 +421,55 @@ function handle_delete_event(){
         query($query, [$_POST['event_id']]);
 
         $_SESSION['flash_message'] = "Event deleted!";
-
-        //TODO: THIS DOES NOT WORK
-
         header('Location: /dashboard/calendar');
         return;
     }else{
         $_SESSION['flash_message'] = "That method is not allowed!";
         header("Location: /");
+        return;
+    }
+}
+
+function handle_settings(){
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        //ensure csrf protection
+        if (!validate_csrf_token()){
+            $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
+            header("Location: /");
+            return;
+        }
+
+        //ensure user is admin
+        if (!is_admin()){
+            $_SESSION['flash_message'] = "You don't have permission to view that page!";
+            header('Location: /');
+            return;
+        }
+
+        //update db records
+        $args = [];
+        foreach ($_POST as $name=>$value){
+            if ($name != 'csrf_token'){
+                $args[] = $name;
+                $args[] = $value;
+            }
+            //NOTE: if the query changes number of '?', this system of creating args could get messed up
+        }
+
+        $query = "UPDATE settings
+        SET value = CASE " . 
+        str_repeat("WHEN name = ? THEN ? ", count($_POST) - 1)
+        . "END;";
+        query($query, $args);
+
+        //redirect on success
+        $_SESSION['flash_message'] = "Settings updated!";
+        header('Location: /dashboard/details');
+        return;
+    }else{
+        $_SESSION['flash_message'] = "That method is not allowed!";
+        header("Location: /dashboard/details");
         return;
     }
 }
