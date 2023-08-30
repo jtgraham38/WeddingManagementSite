@@ -209,7 +209,11 @@ function photos_settings(){
         return;
     }
 
-    $content = "Photos";
+    //get registry admin page
+    ob_start();
+    include('./templates/admin/photos_admin.php');
+    $content = ob_get_contents();
+    ob_end_clean();
 
     include('./templates/admin/admin.php');
 }
