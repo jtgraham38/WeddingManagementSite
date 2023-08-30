@@ -26,6 +26,11 @@ body{
     padding: 12%;
 }
 
+.decoration{
+    user-select: none;
+    pointer-events: none;
+}
+
 .main_corner_decoration{
     max-width: 20%;
     position: absolute;

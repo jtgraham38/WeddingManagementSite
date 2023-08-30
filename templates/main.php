@@ -11,7 +11,7 @@
 </head>
 <body class="container">
     <header>
-        <img src="/static/images/roses_top.png" alt="bundle of white roses">
+        <img class="decoration" src="/static/images/roses_top.png" alt="bundle of white roses">
         
         <div class="wedding_intro has-text-centered">
             <div class="script couple_names" style="font-size: 5rem;">
@@ -143,7 +143,7 @@
     </section>
 
     <footer>
-        <img src="/static/images/roses_bottom.png" alt="bundle of white roses">
+        <img class="decoration" src="/static/images/roses_bottom.png" alt="bundle of white roses">
     </footer>
     <div id="login_logout" style="position: fixed; right: 10px; top: 10px; padding: 0;">
         <?php if (logged_in()){ ?>
