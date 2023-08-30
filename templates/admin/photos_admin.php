@@ -56,13 +56,13 @@
         if ($photos){
             foreach ($photos as $photo_path){
     ?>
-        <div class="box column is-two-fifths" style="margin: 0 1rem 1rem 0; min-height: 6rem;">
+        <div class="column is-two-fifths" style="margin: 0 1rem 1rem 0; min-height: 6rem; position: relative;">
 
-            <div class="image is-4by3">
-                <img src="/uploads/images/<?= $photo_path ?>" alt="Wedding Picture" loading="lazy">
+            <div class="image is-4by3 box">
+                <img src="/uploads/images/<?= $photo_path ?>" alt="Wedding Picture" loading="lazy" style="border-radius: 0.2rem;">
             </div>
 
-            <form method="POST" action="/handle_delete_photo" style="float: right;">
+            <form method="POST" action="/handle_delete_photo" style="position: absolute; right: 1rem; top: 1rem;">
                 <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
                 <input type="hidden" name="photo" value="<?= $photo_path ?>">
                 <button type="submit" class="button">Delete</button>
