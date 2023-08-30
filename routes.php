@@ -28,6 +28,8 @@ $routes = [
     '/handle_rsvp'          =>    'handle_rsvp',
     '/handle_toggle_admin'  => 'handle_toggle_admin',
     '/handle_toggle_attending' => 'handle_toggle_attending',
+    '/handle_add_registry_item' => 'handle_add_registry_item',
+    '/handle_delete_item'   =>  'handle_delete_item',
 ];
 
 //define handler functions
@@ -189,7 +191,7 @@ function calendar_settings(){
         return;
     }
 
-    //get setup admin page
+    //get calendar admin page
     ob_start();
     include('./templates/admin/calendar_admin.php');
     $content = ob_get_contents();
@@ -221,7 +223,11 @@ function registry_settings(){
         return;
     }
 
-    $content = "Registry";
+    //get registry admin page
+    ob_start();
+    include('./templates/admin/registry_admin.php');
+    $content = ob_get_contents();
+    ob_end_clean();
 
     include('./templates/admin/admin.php');
 }
@@ -622,6 +628,80 @@ function handle_toggle_attending(){
     }else{
         $_SESSION['flash_message'] = "That method is not allowed!";
         header("Location: /dashboard/details");
+        return;
+    }
+}
+
+function handle_add_registry_item(){
+    //handle adding and editing of a registry item
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        //ensure csrf protection
+        if (!validate_csrf_token()){
+            $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
+            //header("Location: /");
+            return;
+        }
+        
+        //ensure user is admin
+        if (!is_admin()){
+            $_SESSION['flash_message'] = "You don't have permission to view that page!";
+            header('Location: /');
+            return;
+        }
+
+        //check if the event already exists
+        if (!$_POST['item_id']){
+            //if this is a new event being added
+            $query = 'INSERT INTO registry_items (name, source, url, affiliate_url, image_url) VALUES (?, ?, ?, ?, ?);';
+            query($query, [$_POST['name'], $_POST['source'], $_POST['url'], $_POST['aff_url'], $_POST['img_url']]);
+
+            $_SESSION['flash_message'] = "Item added!";
+        }else{
+            //else, if this is an event being edited
+            $query = 'UPDATE registry_items SET name = ?, source = ?, url = ?, affiliate_url = ?, image_url = ? WHERE id=?;';
+            query($query, [$_POST['name'], $_POST['source'], $_POST['url'], $_POST['aff_url'], $_POST['img_url'], $_POST['item_id']]);
+
+            $_SESSION['flash_message'] = "Event updated!";
+        }
+
+        header('Location: /dashboard/registry');
+        return;
+
+    }else{
+        $_SESSION['flash_message'] = "That method is not allowed!";
+        //header("Location: /");
+        return;
+    }
+}
+
+function handle_delete_item(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        //ensure csrf protection
+        if (!validate_csrf_token()){
+            $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
+            header("Location: /");
+            return;
+        }
+
+        //ensure user is admin
+        if (!is_admin()){
+            $_SESSION['flash_message'] = "You don't have permission to view that page!";
+            header('Location: /');
+            return;
+        }
+
+        //delete the event
+        $query = 'DELETE FROM registry_items WHERE id = ?;';
+        query($query, [$_POST['item_id']]);
+
+        $_SESSION['flash_message'] = "Item deleted!";
+        header('Location: /dashboard/registry');
+        return;
+    }else{
+        $_SESSION['flash_message'] = "That method is not allowed!";
+        header("Location: /");
         return;
     }
 }
