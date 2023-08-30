@@ -57,9 +57,17 @@
             foreach ($photos as $photo_path){
     ?>
         <div class="box column is-two-fifths" style="margin: 0 1rem 1rem 0; min-height: 6rem;">
+
             <div class="image is-4by3">
                 <img src="/uploads/images/<?= $photo_path ?>" alt="Wedding Picture" loading="lazy">
             </div>
+
+            <form method="POST" action="/handle_delete_photo" style="float: right;">
+                <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
+                <input type="hidden" name="photo" value="<?= $photo_path ?>">
+                <button type="submit" class="button">Delete</button>
+            </form>
+
         </div>
     <?php 
             }

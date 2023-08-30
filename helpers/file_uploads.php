@@ -1,6 +1,6 @@
 <?php
 
-function file_upload_handler(){
+function upload_file(){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_dir = "uploads"; //directory where you want to save uploaded files
         $target_file = $target_dir . '/images/' . basename($_FILES["photo"]["name"]);
@@ -40,6 +40,21 @@ function file_upload_handler(){
         }
     }
 
+}
+
+function delete_uploaded_file($filename){
+    $file_to_delete = 'uploads/images/' . $filename; // Replace with the actual path to the file you want to delete
+    if (file_exists($file_to_delete)) {
+        if (unlink($file_to_delete)) {
+            $_SESSION['flash_message'] = "File deleted successfully!";
+            return true;
+        } else {
+            $_SESSION['flash_message'] = "Error deleting the file!";
+        }
+    } else {
+        $_SESSION['flash_message'] = "File not found!";
+    }
+    return false;
 }
 
 ?>
