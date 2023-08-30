@@ -57,7 +57,11 @@
     <tr>
         <th></th>
         <th></th>
-        <th></th>
+        <th>
+            <a href="mailto: <?= implode(',', array_map(function($guest){
+                return $guest['email'];
+            }, $guests)) ?>">Mail all guests</a>
+        </th>
         <th></th>
         <th>Guests: <?= $attending_count; ?></th>
         <th>Admins: <?= $admin_count ?></th>
