@@ -650,6 +650,13 @@ function handle_add_registry_item(){
             return;
         }
 
+        //format all post links correctly
+        if (substr($_POST['url'], 0, 8) != "https://"){ $_POST['url'] = 'https://' . $_POST['url']; }
+
+        if (substr($_POST['aff_url'], 0, 8) != "https://"){ $_POST['aff_url'] = 'https://' . $_POST['aff_url']; }
+
+        if (substr($_POST['img_url'], 0, 8) != "https://"){ $_POST['img_url'] = 'https://' . $_POST['img_url']; }
+
         //check if the event already exists
         if (!$_POST['item_id']){
             //if this is a new event being added
