@@ -29,7 +29,8 @@ $routes = [
     '/handle_toggle_admin'  => 'handle_toggle_admin',
     '/handle_toggle_attending' => 'handle_toggle_attending',
     '/handle_add_registry_item' => 'handle_add_registry_item',
-    '/handle_delete_item'   =>  'handle_delete_item',
+    '/handle_delete_registry_item'   =>  'handle_delete_registry_item',
+    '/handle_add_photo' =>  'handle_add_photo'
 ];
 
 //define handler functions
@@ -686,7 +687,7 @@ function handle_add_registry_item(){
     }
 }
 
-function handle_delete_item(){
+function handle_delete_registry_item(){
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         //ensure csrf protection
@@ -713,6 +714,45 @@ function handle_delete_item(){
     }else{
         $_SESSION['flash_message'] = "That method is not allowed!";
         header("Location: /");
+        return;
+    }
+}
+
+function handle_add_photo(){
+    //handle adding and editing of a registry item
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        //ensure csrf protection
+        if (!validate_csrf_token()){
+            $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
+            header("Location: /");
+            return;
+        }
+        
+        //ensure user is admin
+        if (!is_admin()){
+            $_SESSION['flash_message'] = "You don't have permission to view that page!";
+            header('Location: /');
+            return;
+        }
+
+        //save photo
+        $success = file_upload_handler();
+
+        //ensure upload success
+        if (!$success){
+            //flash message set in file_upload_handler
+            header('Location: /dashboard/photos');
+            return;
+        }
+        
+        $_SESSION['flash_message'] = "Photo uploaded!";
+        header('Location: /dashboard/photos');
+        return;
+
+    }else{
+        $_SESSION['flash_message'] = "That method is not allowed!";
+        //header("Location: /");
         return;
     }
 }

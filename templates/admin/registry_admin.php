@@ -32,7 +32,7 @@
                 <div class="column is-flex is-justify-content-end">
                     <button class="button edit_event_btn" style="margin-right: 1px;" onclick="edit_item_<?= $item['id'] ?>_modal.showModal()">Edit</button>
                     
-                    <form action="/handle_delete_item" method="POST">
+                    <form action="/handle_delete_registry_item" method="POST">
                         <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
                         <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
                         <button class="button delete_item_btn" type="submit">Delete</button>
