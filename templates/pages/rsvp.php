@@ -1,5 +1,5 @@
 <form method="POST" action="/handle_rsvp">
-    <h3 class="title">RSVP to the wedding of <?= get_setting('groom_fname') ?> and <?= get_setting('bride_fname') ?></h3>
+    <h3 class="title">RSVP to the wedding of <?= get_setting('bride_fname') ?> <?= get_setting('bride_lname') ?> and <?= get_setting('groom_fname') ?> <?= get_setting('groom_lname') ?> </h3>
     <hr>
 
     <div class="field">
