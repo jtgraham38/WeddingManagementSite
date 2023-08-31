@@ -17,7 +17,7 @@
                     <option value="" selected>Choose One...</option>
                     <option value="Amazon">Amazon</option>
                     <option value="Walmart">Walmart</option>
-                    <option value="Etsy">Etsy</option>
+                    <option value="Ebay">Ebay</option>
                     <option value="Other">Other</option>
                 </select>
             </div>

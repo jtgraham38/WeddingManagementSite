@@ -17,7 +17,7 @@
                     <option value="" <?= $item['source'] == "" ? "selected" : "" ?> >Choose One...</option>
                     <option value="Amazon" <?= $item['source'] == "Amazon" ? "selected" : "" ?> >Amazon</option>
                     <option value="Walmart" <?= $item['source'] == "Walmart" ? "selected" : "" ?> >Walmart</option>
-                    <option value="Etsy" <?= $item['source'] == "Etsy" ? "selected" : "" ?> >Etsy</option>
+                    <option value="Ebay" <?= $item['source'] == "Ebay" ? "selected" : "" ?> >Ebay</option>
                     <option value="Other" <?= $item['source'] == "Other" ? "selected" : "" ?> >Other</option>
                 </select>
             </div>

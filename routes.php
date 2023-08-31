@@ -32,6 +32,8 @@ $routes = [
     '/handle_delete_registry_item'   =>  'handle_delete_registry_item',
     '/handle_add_photo' =>  'handle_add_photo',
     '/handle_delete_photo' =>  'handle_delete_photo',
+    '/handle_guest_claim_registry_item' => 'handle_guest_claim_registry_item',
+    '/handle_guest_unclaim_registry_item' => 'handle_guest_unclaim_registry_item',
 ];
 
 //define handler functions
@@ -91,7 +93,11 @@ function registry(){
         return;
     }
 
-    $content = "REGISTRY";
+    //get registry content
+    ob_start();
+    include('./templates/pages/registry.php');
+    $content = ob_get_contents();
+    ob_end_clean();
 
     //include main template
     include('./templates/main.php');
@@ -800,4 +806,72 @@ function handle_delete_photo(){
         return;
     }
 }
+
+function handle_guest_claim_registry_item(){
+
+    //handle claiming a registry item
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        //ensure csrf protection
+        if (!validate_csrf_token()){
+            $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
+            header("Location: /");
+            return;
+        }
+        
+        //ensure user is logged in
+        if (!logged_in()){
+            $_SESSION['flash_message'] = "You must be logged in to claim a registry item!";
+            header('Location: /registry');
+            return;
+        }
+
+        //set user id key in registry item
+        $query = 'UPDATE registry_items SET buyer_id = ? WHERE id=?;';
+        query($query, [$_SESSION['user_id'], $_POST['item_id']]);
+        
+        $_SESSION['flash_message'] = "Item Claimed!";
+        header('Location: /registry');
+        return;
+
+    }else{
+        $_SESSION['flash_message'] = "That method is not allowed!";
+        //header("Location: /");
+        return;
+    }
+}
+
+function handle_guest_unclaim_registry_item(){
+    //handle claiming a registry item
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        //ensure csrf protection
+        if (!validate_csrf_token()){
+            $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
+            header("Location: /");
+            return;
+        }
+        
+        //ensure user is logged in
+        if (!logged_in()){
+            $_SESSION['flash_message'] = "You must be logged in to unclaim a registry item!";
+            header('Location: /registry');
+            return;
+        }
+
+        //set user id key in registry item
+        $query = 'UPDATE registry_items SET buyer_id = NULL WHERE id=?;';
+        query($query, [$_POST['item_id']]);
+        
+        $_SESSION['flash_message'] = "Item Unclaimed!";
+        header('Location: /registry');
+        return;
+
+    }else{
+        $_SESSION['flash_message'] = "That method is not allowed!";
+        //header("Location: /");
+        return;
+    }
+}
+
 ?>
