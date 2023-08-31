@@ -73,7 +73,11 @@ function photos(){
         return;
     }
 
-    $content = "PHOTOS";
+    //get photos content
+    ob_start();
+    include('./templates/pages/photos.php');
+    $content = ob_get_contents();
+    ob_end_clean();
 
     //include main template
     include('./templates/main.php');
