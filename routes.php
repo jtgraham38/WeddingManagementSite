@@ -403,8 +403,8 @@ function handle_event(){
             $_SESSION['flash_message'] = "Event added!";
         }else{
             //else, if this is an event being edited
-            $query = 'UPDATE calendar_items SET start_datetime = ?, end_datetime = ?, name = ?, description = ? WHERE id=?;';
-            query($query, [$_POST['start_date'], $_POST['end_date'], $_POST['name'], $_POST['desc'], $_POST['event_id']]);
+            $query = 'UPDATE calendar_items SET start_datetime = ?, end_datetime = ?, name = ?, description = ?, location = ? WHERE id=?;';
+            query($query, [$_POST['start_date'], $_POST['end_date'], $_POST['name'], $_POST['desc'], $_POST['location'], $_POST['event_id']]);
 
             $_SESSION['flash_message'] = "Event updated!";
         }
