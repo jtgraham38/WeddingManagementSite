@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= get_setting('groom_fname') ?> and <?= get_setting('bride_fname') ?>'s Wedding </title>
 
+    <link rel="shortcut icon" href="/static/images/white_rose_icon.png" type="image/x-icon">
+
     <link rel="stylesheet" type="text/css" href="/static/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 

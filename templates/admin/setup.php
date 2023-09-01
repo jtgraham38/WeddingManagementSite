@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/static/images/white_rose_icon.png" type="image/x-icon">
+
     <link rel="stylesheet" type="text/css" href="/static/css/bulma.min.css">
     <title>Congratulations on your Engagement!</title>
 </head>
