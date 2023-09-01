@@ -160,7 +160,7 @@
 
     <div class="box" id="visit_jacob_graham" style="position: fixed; right: 10px; bottom: 0px; padding: 0; padding: 1rem;">
         <p>Getting Married?</p>
-        <p>Want to use this site your wedding?</p>
+        <p>Want to use this site for your wedding?</p>
         <br>
         <a target="_blank" class="button box" href="https://jacob-t-graham.com/contact">Inquire!</a>
     </div>
