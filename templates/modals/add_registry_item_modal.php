@@ -6,7 +6,7 @@
         <div class="field">
             <label class="label">Item Name</label>
             <div class="control">
-                <input name="name" class="input" type="text" placeholder="Item Name" required>
+                <input maxlength="50" name="name" class="input" type="text" placeholder="Item Name" required>
             </div>
         </div>
 
@@ -26,21 +26,21 @@
         <div class="field">
             <label class="label">URL</label>
             <div class="control">
-                <input name="url" class="input" type="text" placeholder="URL" required>
+                <input maxlength="500" name="url" class="input" type="text" placeholder="URL" required>
             </div>
         </div>
 
         <div class="field">
             <label class="label">Affiliate URL</label>
             <div class="control">
-                <input name="aff_url" class="input" type="text" placeholder="Affiliate URL">
+                <input maxlength="500" name="aff_url" class="input" type="text" placeholder="Affiliate URL">
             </div>
         </div>
 
         <div class="field">
             <label class="label">Image URL</label>
             <div class="control">
-                <input name="img_url" class="input" type="text" placeholder="Image URL" required>
+                <input maxlength="500" name="img_url" class="input" type="text" placeholder="Image URL" required>
             </div>
         </div>
 

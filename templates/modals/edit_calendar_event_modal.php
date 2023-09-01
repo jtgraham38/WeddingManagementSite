@@ -6,7 +6,7 @@
             <div class="field">
                 <label class="label">Event Name</label>
                 <div class="control">
-                    <input name="name" value="<?= $event['name'] ?>" class="input" type="text" placeholder="Event Name" required>
+                    <input maxlength="50" name="name" value="<?= $event['name'] ?>" class="input" type="text" placeholder="Event Name" required>
                 </div>
             </div>
         <?php } else {?>
@@ -16,14 +16,14 @@
         <div class="field">
             <label class="label"><?= $wedding_event ? 'Description' : 'Wedding Description' ?></label>
             <div class="control">
-                <input name="desc" value="<?= $event['description'] ?>" class="input" type="text" placeholder="Description" required>
+                <input maxlength="2500" name="desc" value="<?= $event['description'] ?>" class="input" type="text" placeholder="Description" required>
             </div>
         </div>
 
         <div class="field">
             <label class="label"><?= $wedding_event ? 'Location' : 'Wedding Location' ?></label>
             <div class="control">
-                <input name="location" value="<?= $event['location'] ?>" class="input" type="text" placeholder="Location" required>
+                <input maxlength="100" name="location" value="<?= $event['location'] ?>" class="input" type="text" placeholder="Location" required>
             </div>
         </div>
 

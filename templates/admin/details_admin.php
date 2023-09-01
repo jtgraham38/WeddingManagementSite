@@ -14,7 +14,7 @@
     <div class="field">
         <label class="label"><?= $setting['label'] ?>:</label>
         <div class="control">
-            <input name="<?= $setting['name'] ?>" value="<?= $setting['value'] ?>" class="input setting_input" type="text" placeholder="<?= $setting['label'] ?>">
+            <input maxlength="2500" name="<?= $setting['name'] ?>" value="<?= $setting['value'] ?>" class="input setting_input" type="text" placeholder="<?= $setting['label'] ?>">
         </div>
     </div>
 

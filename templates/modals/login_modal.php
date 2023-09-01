@@ -6,14 +6,14 @@
         <div class="field">
             <label class="label">Email</label>
             <div class="control">
-                <input name="email" class="input" type="email" placeholder="Email" required>
+                <input maxlength="50" name="email" class="input" type="email" placeholder="Email" required>
             </div>
         </div>
 
         <div class="field">
             <label class="label">Password</label>
             <div class="control">
-                <input name="password" class="input" type="password" placeholder="Password" required>
+                <input maxlength="25" name="password" class="input" type="password" placeholder="Password" required>
             </div>
         </div>
 
