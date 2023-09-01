@@ -61,7 +61,11 @@ function calendar(){
         return;
     }
 
-    $content = "CALENDAR";
+    //get calendar content
+    ob_start();
+    include('./templates/pages/calendar.php');
+    $content = ob_get_contents();
+    ob_end_clean();
 
     //include main template
     include('./templates/main.php');
@@ -374,7 +378,7 @@ function handle_event(){
         //ensure csrf protection
         if (!validate_csrf_token()){
             $_SESSION['flash_message'] = "CSRF token is invalid... nice try!";
-            //header("Location: /");
+            header("Location: /");
             return;
         }
         
