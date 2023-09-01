@@ -132,7 +132,7 @@
             <img class="main_corner_decoration tl"src="/static/images/gold_corner_decoration.png" alt="gold corner decoration">
             <img class="main_corner_decoration tr"src="/static/images/gold_corner_decoration.png" alt="gold corner decoration">
             
-            <article style="padding: 1rem;">
+            <article style="padding: 1rem; min-height: 15rem;">
                 <?= $content ?>
             </article>
 
