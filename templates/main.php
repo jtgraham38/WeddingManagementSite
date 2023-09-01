@@ -156,6 +156,13 @@
         <?php } ?>
     </div>
 
+    <div class="box" id="visit_jacob_graham" style="position: fixed; right: 10px; bottom: 0px; padding: 0; padding: 1rem;">
+        <p>Getting Married?</p>
+        <p>Want to use this site your wedding?</p>
+        <br>
+        <a target="_blank" class="button box" href="https://jacob-t-graham.com/contact">Inquire!</a>
+    </div>
+
     
 
     <?php include('./templates/modals/login_modal.php'); //modal has id "login_modal" ?>
