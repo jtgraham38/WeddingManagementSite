@@ -160,9 +160,8 @@ function admin_dashboard(){
         return;
     }
 
-    $content = "Landing page!";
-    
-    include('./templates/admin/admin.php');
+    //redirect to details page
+    header('Location: /dashboard/details');
 }
 
 function details_settings(){
