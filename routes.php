@@ -45,8 +45,11 @@ function home(){
         return;
     }
 
-    //set content of page
-    $content = "HOMEPAGE";
+    //get details content
+    ob_start();
+    include('./templates/pages/details.php');
+    $content = ob_get_contents();
+    ob_end_clean();
     
 
     //include main template
