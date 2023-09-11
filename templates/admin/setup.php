@@ -10,7 +10,7 @@
     <title>Congratulations on your Engagement!</title>
 </head>
 <body>
-    <div class="is-flex is-justify-content-center is-align-content-center" style="height: 100vh;">
+    <div class="is-flex is-justify-content-center is-align-content-center" style="min-height: 100vh;">
         <div class="box" >
             <?= $content ?>
         </div>
