@@ -32,7 +32,7 @@
                 <div class="column is-flex is-justify-content-end">
                     <button class="button edit_event_btn" style="margin-right: 1px;" onclick="edit_event_<?= $event['id'] ?>_modal.showModal()">Edit</button>
                     
-                    <?php if ($event['name'] != "Wedding Day") {?>
+                    <?php if ($event['name'] != "Wedding Reception") {?>
                         <form action="/handle_delete_event" method="POST">
                             <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
                             <input type="hidden" name="event_id" value="<?= $event['id'] ?>">

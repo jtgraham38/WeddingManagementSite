@@ -453,10 +453,10 @@ function handle_delete_event(){
             return;
         }
 
-        //TODO: handle direct post to this endpoint to delete "Wedding Day" event
+        //TODO: handle direct post to this endpoint to delete "Wedding Reception" event
 
         //delete the event
-        $query = 'DELETE FROM calendar_items WHERE id = ? AND name != "Wedding Day";';
+        $query = 'DELETE FROM calendar_items WHERE id = ? AND name != "Wedding Reception";';
         query($query, [$_POST['event_id']]);
 
         $_SESSION['flash_message'] = "Event deleted!";

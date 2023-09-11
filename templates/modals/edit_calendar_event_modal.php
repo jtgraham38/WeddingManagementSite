@@ -2,7 +2,7 @@
     <form method="POST" action="/handle_add_event">
         <h3 class="title">Edit Event</h3>
         <hr>
-        <?php if ($event['name'] != 'Wedding Day'){ ?>
+        <?php if ($event['name'] != 'Wedding Reception'){ ?>
             <div class="field">
                 <label class="label">Event Name</label>
                 <div class="control">
@@ -10,7 +10,7 @@
                 </div>
             </div>
         <?php } else {?>
-            <input type="hidden" name="name" value="Wedding Day">
+            <input type="hidden" name="name" value="Wedding Reception">
         <?php } ?>
 
         <div class="field">

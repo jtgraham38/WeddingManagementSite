@@ -50,7 +50,7 @@
 
                 //date we are counting down to 
                 <?php 
-                $date_record = query("SELECT start_datetime FROM calendar_items WHERE name = 'Wedding Day';")[0]['start_datetime'];
+                $date_record = query("SELECT start_datetime FROM calendar_items WHERE name = 'Wedding Reception';")[0]['start_datetime'];
                 if ($date_record != null){
                     $wedding_date = new DateTime($date_record);
                 }

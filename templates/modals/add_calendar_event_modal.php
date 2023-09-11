@@ -1,7 +1,7 @@
 <dialog id="add_event_modal" style="padding: 2rem; border-radius: 0.2rem;">
-    <?php $wedding_event = query("SELECT * from calendar_items WHERE name = 'Wedding Day';")[0]; ?>
+    <?php $wedding_event = query("SELECT * from calendar_items WHERE name = 'Wedding Reception';")[0]; ?>
     <form method="POST" action="/handle_add_event">
-        <h3 class="title"><?= $wedding_event ? 'Add Event' : 'Add Your Wedding' ?></h3>
+        <h3 class="title"><?= $wedding_event ? 'Add Event' : 'Add Your Reception' ?></h3>
         <hr>
 
         <?php if ($wedding_event){ ?>
@@ -12,7 +12,7 @@
                 </div>
             </div>
         <?php } else {?>
-            <input type="hidden" name="name" value="Wedding Day">
+            <input type="hidden" name="name" value="Wedding Reception">
         <?php } ?>
         <?php unset($wedding_event); ?>
 
