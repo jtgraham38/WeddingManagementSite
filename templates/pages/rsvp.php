@@ -26,7 +26,7 @@
     <div class="field">
         <label class="label">Your Phone Number</label>
         <div class="control">
-            <input maxlength="15" name="phone" class="input" type="tel" placeholder="Your Phone Number (xxx-xxx-xxxx)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            <input maxlength="15" name="phone" class="input" type="text" placeholder="Your Phone Number (xxx-xxx-xxxx)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
         </div>
     </div>
 
