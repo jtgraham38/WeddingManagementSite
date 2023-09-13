@@ -41,7 +41,9 @@
                 </div>
             </div>
             <div>
-                <img style="width: 32rem; height: 24rem; object-fit: cover;" src="<?= $item['image_url'] ?>" alt="<?= $item['name'] ?>">
+                <div style="display: flex; justify-content: center;  margin: 1rem 0;">
+                    <img style="max-height: 32rem; object-fit: cover;" src="<?= $item['image_url'] ?>" alt="<?= $item['name'] ?>">
+                </div>
                 <a style="float: right;" target="_blank" href="<?= $item['affiliate_url'] != "" ? $item['affiliate_url'] : $item['url'] ?>" class="button is-link">View Item</a>
             </div>
         </div>
