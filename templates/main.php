@@ -17,7 +17,7 @@
         
         <div class="wedding_intro has-text-centered">
             <h3 class="is-size-3">With joy, we announce the upcoming marriage of </h3>
-            <div class="script couple_names" style="font-size: 5rem;">
+            <div class="script couple_names" style="font-size: 4rem;">
                 <span class="bride_name"> <?= get_setting('bride_fname'); ?> <?= get_setting('bride_lname'); ?></span> & <span class="groom_name"><?= get_setting('groom_fname'); ?> <?= get_setting('groom_lname'); ?></span> 
             </div>
             <div id="countdown" class="is-size-4"></div>
