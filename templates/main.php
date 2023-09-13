@@ -160,7 +160,10 @@
     </div>
 
     <div class="box" id="visit_jacob_graham" style="position: fixed; right: 10px; bottom: 0px; padding: 0; padding: 1rem;">
-        <p>Getting Married?</p>
+        <div style="display: flex; justify-content: space-between;">
+            <p>Getting Married?</p>
+            <button class="delete" onclick="event.target.parentNode.parentNode.remove()"></button>
+        </div>
         <p>Want to use this site for your wedding?</p>
         <br>
         <a target="_blank" class="button box" href="https://jacob-t-graham.com/contact">Inquire!</a>
