@@ -20,7 +20,7 @@ function upload_file(){
         }
 
         // Allow only certain file formats
-        if ($image_file_type !== "jpg" && $image_file_type !== "png") {
+        if ($image_file_type !== "jpg" && $image_file_type !== "jpeg" && $image_file_type !== "png") {
             $_SESSION['flash_message'] = "Only JPG and PNG files are allowed!";
             $upload_ok = 0;
         }
