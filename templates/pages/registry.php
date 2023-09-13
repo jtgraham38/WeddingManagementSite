@@ -8,7 +8,10 @@
         foreach ($items as $item){ ?>
             <div class="container box">
                 <h3 class="is-size-3"><?= $item['name'] ?></h3>
-                <img style="width: 100%; height: auto; object-fit: cover;" src="<?= $item['image_url'] ?>" alt="<?= $item['name'] ?>">
+                <div style="display: flex; justify-content: center;  margin: 1rem 0;">
+                    <img style="max-height: 32rem; object-fit: cover;" src="<?= $item['image_url'] ?>" alt="<?= $item['name'] ?>">
+                </div>
+                
 
                 <div class="is-flex is-align-items-end is-justify-content-end" style="width: 100%;">
                     <a style="margin-right: 2px;" target="_blank" href="<?= $item['affiliate_url'] != "" ? $item['affiliate_url'] : $item['url'] ?>" class="button">View Item</a>
