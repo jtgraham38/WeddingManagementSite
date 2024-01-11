@@ -1,4 +1,4 @@
-<div class="columns is-multiline">
+<div class="clearfix">
     <?php
     //get photos
     $photos = array_filter( scandir('./uploads/images') , function($path){
@@ -7,19 +7,20 @@
     
     //display images
     if ($photos){
+        $i = 0;
         foreach ($photos as $photo_name){
             $photo_path = '/uploads/images/' . $photo_name;
             ?>
-                <div class="column is-one-third">
-                    <figure class="image is-4by3 photo_container">
-                        <img src="<?= $photo_path ?>" alt="Wedding Picture">
-                    </figure>
-                </div>
+                <?php $i++ ?>
+                <figure class="photo_container" style="width: 49%; height: auto; object-fit: cover; float: <?= $i%2==0 ? 'left' : 'right' ?>; margin: 0.5%;">
+                    <img src="<?= $photo_path ?>" alt="Wedding Picture">
+                </figure>
             <?php
         }
     }
 
     ?>
+    <div style="clear: both;"></div>
 </div>
 
 <div class="hidden is-flex-direction-row is-justify-content-center is-align-items-center" id="photo_popup" style="border: 0px; padding: 0;">

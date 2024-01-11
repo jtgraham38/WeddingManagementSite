@@ -68,3 +68,10 @@ body{
 
 /* navbar styling */
 
+/* clearfix */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+/*clearfix */
