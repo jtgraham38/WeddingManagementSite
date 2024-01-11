@@ -14,24 +14,24 @@
 <body>
     <aside class="menu" id="admin_menu>" style="background-color: #ccb98a; height: 100vh; position: fixed; left: 0; top: 0; min-width: 10rem; padding: 0.2rem;">
         <p class="menu-label">
-            Hi, <?= $_SESSION['fname'] . " " . $_SESSION['lname'] ?>
+            Hi, <?= htmlspecialchars($_SESSION['fname'] . " " . $_SESSION['lname']) ?>
         </p>
         <ul class="menu-list">
             
             <li>
-                <a href="/dashboard/details" class="<?= $_SERVER['REQUEST_URI'] == '/dashboard/details' ? 'is-active' : ''?>">Details</a>
+                <a href="/dashboard/details" class="<?= htmlspecialchars($_SERVER['REQUEST_URI']) == '/dashboard/details' ? 'is-active' : ''?>">Details</a>
             </li>
             <li>
-                <a href="/dashboard/guest-list" class="<?= $_SERVER['REQUEST_URI'] == '/dashboard/guest-list' ? 'is-active' : ''?>">Guest List</a>
+                <a href="/dashboard/guest-list" class="<?= htmlspecialchars($_SERVER['REQUEST_URI']) == '/dashboard/guest-list' ? 'is-active' : ''?>">Guest List</a>
             </li>
             <li>
-                <a href="/dashboard/calendar" class="<?= $_SERVER['REQUEST_URI'] == '/dashboard/calendar' ? 'is-active' : ''?>">Calendar</a>
+                <a href="/dashboard/calendar" class="<?= htmlspecialchars($_SERVER['REQUEST_URI']) == '/dashboard/calendar' ? 'is-active' : ''?>">Calendar</a>
             </li>
             <li>
-                <a href="/dashboard/photos" class="<?= $_SERVER['REQUEST_URI'] == '/dashboard/photos' ? 'is-active' : ''?>">Photos</a>
+                <a href="/dashboard/photos" class="<?= htmlspecialchars($_SERVER['REQUEST_URI']) == '/dashboard/photos' ? 'is-active' : ''?>">Photos</a>
             </li>
             <li>
-                <a href="/dashboard/registry" class="<?= $_SERVER['REQUEST_URI'] == '/dashboard/registry' ? 'is-active' : ''?>">Registry</a>
+                <a href="/dashboard/registry" class="<?= htmlspecialchars($_SERVER['REQUEST_URI']) == '/dashboard/registry' ? 'is-active' : ''?>">Registry</a>
             </li>
         </ul>
 

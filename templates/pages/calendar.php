@@ -7,12 +7,12 @@
     if ($events){
         foreach ($events as $event){ ?>
             <div class="box container" style="height: 100%;">
-                <h3 class="is-size-3"><?= $event['name'] ?></h3>
+                <h3 class="is-size-3"><?= htmlspecialchars($event['name']) ?></h3>
                 
                 <div class="columns">
                     <div class="column is-three-fifths">
                         <p>
-                            <?= $event['description'] ?>
+                            <?= htmlspecialchars($event['description']) ?>
                         </p>
                     </div>
                     <div class="column">
@@ -20,21 +20,21 @@
                             <span>
                                 From
                                 <strong>
-                                    <?= format_date($event['start_datetime']);?>
+                                    <?= htmlspecialchars(format_date($event['start_datetime']));?>
                                 </strong>
                             </span>
 
                             <span>
                                 to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <strong>
-                                    <?= format_date($event['end_datetime']);?>
+                                    <?= htmlspecialchars(format_date($event['end_datetime']));?>
                                 </strong>
                             </span>
 
                             <span>
                                 at&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <strong>
-                                    <?= $event['location'] ?>
+                                    <?= htmlspecialchars($event['location']) ?>
                                 </strong>
                             </span>
                         </div>

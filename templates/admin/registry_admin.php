@@ -25,16 +25,16 @@
     ?>
         <div class="box column is-two-fifths" style="margin: 0 1rem 1rem 0; min-height: 6rem;">
             <div class="columns">
-                <h4 class="column is-size-4"><?= $item['name'] ?></h4>
+                <h4 class="column is-size-4"><?= htmlspecialchars($item['name']) ?></h4>
 
                 <?php include('./templates/modals/edit_registry_item_modal.php'); ?>
 
                 <div class="column is-flex is-justify-content-end">
-                    <button class="button edit_event_btn" style="margin-right: 1px;" onclick="edit_item_<?= $item['id'] ?>_modal.showModal()">Edit</button>
+                    <button class="button edit_event_btn" style="margin-right: 1px;" onclick="edit_item_<?= htmlspecialchars($item['id']) ?>_modal.showModal()">Edit</button>
                     
                     <form action="/handle_delete_registry_item" method="POST">
                         <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
-                        <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
+                        <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
                         <button class="button delete_item_btn" type="submit">Delete</button>
                     </form>
                     
@@ -42,9 +42,9 @@
             </div>
             <div>
                 <div style="display: flex; justify-content: center;  margin: 1rem 0;">
-                    <img style="max-height: 32rem; object-fit: cover;" src="<?= $item['image_url'] ?>" alt="<?= $item['name'] ?>">
+                    <img style="max-height: 32rem; object-fit: cover;" src="<?= htmlspecialchars($item['image_url']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
                 </div>
-                <a style="float: right;" target="_blank" href="<?= $item['affiliate_url'] != "" ? $item['affiliate_url'] : $item['url'] ?>" class="button is-link">View Item</a>
+                <a style="float: right;" target="_blank" href="<?= $item['affiliate_url'] != "" ? htmlspecialchars($item['affiliate_url']) : htmlspecialchars($item['url']) ?>" class="button is-link">View Item</a>
             </div>
         </div>
     <?php 

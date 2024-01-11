@@ -25,17 +25,17 @@
     ?>
         <div class="box column is-two-fifths" style="margin: 0 1rem 1rem 0; min-height: 6rem;">
             <div class="columns">
-                <h4 class="column is-size-4"><?= $event['name'] ?></h4>
+                <h4 class="column is-size-4"><?= htmlspecialchars($event['name']) ?></h4>
 
                 <?php include('./templates/modals/edit_calendar_event_modal.php'); ?>
 
                 <div class="column is-flex is-justify-content-end">
-                    <button class="button edit_event_btn" style="margin-right: 1px;" onclick="edit_event_<?= $event['id'] ?>_modal.showModal()">Edit</button>
+                    <button class="button edit_event_btn" style="margin-right: 1px;" onclick="edit_event_<?= htmlspecialchars($event['id']) ?>_modal.showModal()">Edit</button>
                     
                     <?php if ($event['name'] != "Wedding Reception") {?>
                         <form action="/handle_delete_event" method="POST">
                             <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
-                            <input type="hidden" name="event_id" value="<?= $event['id'] ?>">
+                            <input type="hidden" name="event_id" value="<?= htmlspecialchars($event['id']) ?>">
                             <button class="button delete_event_btn" type="submit">Delete</button>
                         </form>
                     <?php } ?>
@@ -45,7 +45,7 @@
             <div class="columns">
                 <div class="column is-two-fifths">
                     <p>
-                        <?= $event['description'] ?>
+                        <?= htmlspecialchars($event['description']) ?>
                     </p>
                 </div>
                 <div class="column">
@@ -53,21 +53,21 @@
                         <span>
                             From
                             <strong>
-                                <?= format_date($event['start_datetime']);?>
+                                <?= htmlspecialchars(format_date($event['start_datetime'])) ;?>
                             </strong>
                         </span>
 
                         <span>
                             to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <strong>
-                                <?= format_date($event['end_datetime']);?>
+                                <?= htmlspecialchars(format_date($event['end_datetime']));?>
                             </strong>
                         </span>
 
                         <span>
                             at&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <strong>
-                                <?= $event['location'] ?>
+                                <?= htmlspecialchars($event['location']) ?>
                             </strong>
                         </span>
                     </div>

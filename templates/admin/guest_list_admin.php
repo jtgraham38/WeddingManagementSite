@@ -30,22 +30,22 @@
         if ($guest['attending']){ $attending_count++; }
     ?> 
         <tr>
-            <td><?=$guest['fname'] ?></th>
-            <td><?=$guest['lname'] ?></td>
-            <td><a href="mailto: <?=$guest['email'] ?>"><?=$guest['email'] ?></a></td>
-            <td><a href="tel:<?=$guest['phone'] ?>"><?=$guest['phone'] ?></a></td>
+            <td><?=htmlspecialchars($guest['fname']) ?></th>
+            <td><?=htmlspecialchars($guest['lname']) ?></td>
+            <td><a href="mailto: <?=htmlspecialchars($guest['email']) ?>"><?=htmlspecialchars($guest['email']) ?></a></td>
+            <td><a href="tel:<?=htmlspecialchars($guest['phone']) ?>"><?=htmlspecialchars($guest['phone']) ?></a></td>
             <td>
             
                 <form method="POST" action="/handle_toggle_attending">
                     <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
-                    <input type="hidden" name="guest_id" value="<?= $guest['id']; ?>">
+                    <input type="hidden" name="guest_id" value="<?= htmlspecialchars($guest['id']); ?>">
                     <input onChange="this.form.submit()" type="checkbox" name="is_attending" <?= $guest['attending'] ? "checked" : ""?>>
                 </form>
             </td>
             <td>
                 <form method="POST" action="/handle_toggle_admin">
                     <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
-                    <input type="hidden" name="guest_id" value="<?= $guest['id']; ?>">
+                    <input type="hidden" name="guest_id" value="<?= htmlspecialchars($guest['id']); ?>">
                     <input onChange="this.form.submit()" type="checkbox" name="is_admin" <?=$guest['admin'] ? "checked" : ""?>>
                 </form>
             </td>
@@ -58,9 +58,9 @@
         <th></th>
         <th></th>
         <th>
-            <a href="mailto: <?= implode(',', array_map(function($guest){
+            <a href="mailto: <?= htmlspecialchars(implode(',', array_map(function($guest){
                 return $guest['email'];
-            }, $guests)) ?>">Mail all guests</a>
+            }, $guests))) ?>">Mail all guests</a>
         </th>
         <th></th>
         <th>Guests: <?= $attending_count; ?></th>

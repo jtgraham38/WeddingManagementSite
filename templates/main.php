@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= get_setting('groom_fname') ?> and <?= get_setting('bride_fname') ?>'s Wedding </title>
+    <title><?= htmlspecialchars(get_setting('groom_fname')) ?> and <?= htmlspecialchars(get_setting('bride_fname')) ?>'s Wedding </title>
 
     <link rel="shortcut icon" href="/static/images/white_rose_icon.png" type="image/x-icon">
 
@@ -18,7 +18,7 @@
         <div class="wedding_intro has-text-centered">
             <h3 class="is-size-3">With joy, we announce the upcoming marriage of </h3>
             <div class="script couple_names" style="font-size: 4rem;">
-                <span class="bride_name"> <?= get_setting('bride_fname'); ?> <?= get_setting('bride_lname'); ?></span> & <span class="groom_name"><?= get_setting('groom_fname'); ?> <?= get_setting('groom_lname'); ?></span> 
+                <span class="bride_name"> <?= htmlspecialchars(get_setting('bride_fname')); ?> <?= htmlspecialchars(get_setting('bride_lname')); ?></span> & <span class="groom_name"><?= htmlspecialchars(get_setting('groom_fname')); ?> <?= htmlspecialchars(get_setting('groom_lname')); ?></span> 
             </div>
             <div id="countdown" class="is-size-4"></div>
 
@@ -59,7 +59,7 @@
                 }
                 
                 ?>
-                const wedding_date_str = '<?= $wedding_date ? $wedding_date->format('M d, Y H:i:s') : "" ?>'
+                const wedding_date_str = '<?= $wedding_date ? htmlspecialchars($wedding_date->format('M d, Y H:i:s')) : "" ?>'
                 var countdown = null;
 
                 //if the wedding date is set
@@ -75,7 +75,7 @@
                 }
             </script>
             
-            <div class="tagline is-size-5"><?= get_setting('tagline'); ?></div>
+            <div class="tagline is-size-5"><?= htmlspecialchars(get_setting('tagline')); ?></div>
         </div>
 
         <hr>

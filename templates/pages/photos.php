@@ -13,7 +13,7 @@
             ?>
                 <?php $i++ ?>
                 <figure class="photo_container" style="width: 49%; height: auto; object-fit: cover; float: <?= $i%2==0 ? 'left' : 'right' ?>; margin: 0.5%;">
-                    <img src="<?= $photo_path ?>" alt="Wedding Picture">
+                    <img src="<?= htmlspecialchars($photo_path) ?>" alt="Wedding Picture">
                 </figure>
             <?php
         }
