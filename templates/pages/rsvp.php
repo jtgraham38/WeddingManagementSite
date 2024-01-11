@@ -33,14 +33,14 @@
     <div class="field">
         <label class="label">Choose Your Password</label>
         <div class="control">
-            <input maxlength="25" name="password" id="password" class="input" type="password" placeholder="Choose Your Password" required>
+            <input maxlength="25" minlength="5" name="password" id="password" class="input" type="password" placeholder="Choose Your Password" required>
         </div>
     </div>
 
     <div class="field">
         <label class="label">Confirm Your Password</label>
         <div class="control">
-            <input maxlength="25" name="confirm_password" id="confirm_password" class="input" type="password" placeholder="Confirm Your Password" required>
+            <input maxlength="25" minlength="5" name="confirm_password" id="confirm_password" class="input" type="password" placeholder="Confirm Your Password" required>
         </div>
     </div>
 
