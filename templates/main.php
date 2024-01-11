@@ -161,12 +161,51 @@
 
     <div class="box" id="visit_jacob_graham" style="position: fixed; right: 10px; bottom: 0px; padding: 0; padding: 1rem;">
         <div style="display: flex; justify-content: space-between;">
-            <p>Getting Married?</p>
-            <button class="delete" onclick="event.target.parentNode.parentNode.remove()"></button>
+            <p>Like this website?</p>
+            <button class="delete" id="dismiss_inquire_box_btn" onclick="event.target.parentNode.parentNode.remove()"></button>
         </div>
-        <p>Want to use this site for your wedding?</p>
+        <p>Get a website of your own, by Jacob Graham!</p>
         <br>
         <a target="_blank" class="button box" href="https://jacob-t-graham.com/contact">Inquire!</a>
+
+        <script>
+            //function to set a cookie
+            function set_cookie(name, value, daysToExpire) {
+                var date = new Date();
+                date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + date.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/";
+            }
+
+            //function to get the value of a cookie by name
+            function get_cookie(name) {
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var cookieArray = decodedCookie.split(';');
+
+                for (var i = 0; i < cookieArray.length; i++) {
+                    var cookie = cookieArray[i].trim();
+
+                    //check if the cookie starts with the desired name
+                    if (cookie.indexOf(name + "=") === 0) {
+                    //return the value of the cookie
+                    return cookie.substring(name.length + 1);
+                    }
+                }
+
+                //if the cookie is not found, return null
+                return null;
+            }
+
+            document.getElementById('dismiss_inquire_box_btn').addEventListener('click', (event)=>{
+                set_cookie("inquire_dismissed", "true", 1); // sets a cookie named "dismissed" with value "true" that expires in 7 days
+            })
+            
+            document.addEventListener('DOMContentLoaded', (event)=>{
+                if (get_cookie('inquire_dismissed')){
+                    document.getElementById('visit_jacob_graham').remove();
+                }
+            })
+        </script>
     </div>
 
     
