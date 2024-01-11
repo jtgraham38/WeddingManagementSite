@@ -159,12 +159,12 @@
         <?php } ?>
     </div>
 
-    <div class="box" id="visit_jacob_graham" style="position: fixed; right: 10px; bottom: 0px; padding: 0; padding: 1rem;">
+    <div class="box" id="visit_jacob_graham" style="position: fixed; right: 10px; bottom: 0px; padding: 0; padding: 1rem; max-width: 20rem;">
         <div style="display: flex; justify-content: space-between;">
             <p>Like this website?</p>
             <button class="delete" id="dismiss_inquire_box_btn" onclick="event.target.parentNode.parentNode.remove()"></button>
         </div>
-        <p>Get a website of your own, by Jacob Graham!</p>
+        <p>Inquire to learn about the web development services Jacob Graham offers.</p>
         <br>
         <a target="_blank" class="button box" href="https://jacob-t-graham.com/contact">Inquire!</a>
 
