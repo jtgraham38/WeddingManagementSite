@@ -62,9 +62,10 @@
                 <img src="/uploads/images/<?= htmlspecialchars($photo_path) ?>" alt="Wedding Picture" loading="lazy" style="border-radius: 0.2rem;">
             </div>
 
-            <form method="POST" action="/handle_delete_photo" style="position: absolute; right: 1rem; top: 1rem;">
+            <form method="POST" action="/handle_delete_photo" class="is-flex is-flex-direction-row is-align-items-center" style="position: absolute; right: 1rem; top: 1rem;">
                 <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
                 <input type="hidden" name="photo" value="<?=htmlspecialchars($photo_path) ?>">
+                <div class="mr-2 p-1 has-text-light has-background-dark" style="border-radius:0.25rem;"><?=htmlspecialchars($photo_path) ?></div>
                 <button type="submit" class="button">Delete</button>
             </form>
 
