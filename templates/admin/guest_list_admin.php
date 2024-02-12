@@ -12,6 +12,7 @@
         <th>Email</th>
         <th>Phone</th>
         <th>Attending?</th>
+        <th>Additional Guests</th>
         <th>Admin?</th>
     </tr>
   </thead>
@@ -27,7 +28,10 @@
     //display guests in table
     foreach ($guests as $guest){
         if ($guest['admin']){ $admin_count++; }
-        if ($guest['attending']){ $attending_count++; }
+        if ($guest['attending']){ 
+            $attending_count++;
+            $attending_count += isset($guest['additional_guests']) ? $guest['additional_guests'] : 0; 
+        }
     ?> 
         <tr>
             <td><?=htmlspecialchars($guest['fname']) ?></th>
@@ -42,6 +46,7 @@
                     <input onChange="this.form.submit()" type="checkbox" name="is_attending" <?= $guest['attending'] ? "checked" : ""?>>
                 </form>
             </td>
+            <td><?=htmlspecialchars($guest['additional_guests'])?></td>
             <td>
                 <form method="POST" action="/handle_toggle_admin">
                     <input type="hidden" name="csrf_token" value="<?= create_csrf_token(); ?>">
