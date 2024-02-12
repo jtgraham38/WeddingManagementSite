@@ -31,7 +31,7 @@
     </div>
 
     <div class="field">
-        <label class="label">Choose Your Password</label>
+        <label class="label">Choose Your Password (your login will be used to mark registry items as taken).</label>
         <div class="control">
             <input maxlength="25" minlength="5" name="password" id="password" class="input" type="password" placeholder="Choose Your Password" required>
         </div>
