@@ -69,6 +69,7 @@
         </th>
         <th></th>
         <th>Guests: <?= $attending_count; ?></th>
+        <th></th>
         <th>Admins: <?= $admin_count ?></th>
       
     </tr>
