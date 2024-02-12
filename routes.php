@@ -833,15 +833,15 @@ function handle_guest_claim_registry_item(){
         }
         
         //ensure user is logged in
-        if (!logged_in()){
-            $_SESSION['flash_message'] = "You must be logged in to claim a registry item!";
-            header('Location: /registry');
-            return;
-        }
+        // if (!logged_in()){
+        //     $_SESSION['flash_message'] = "You must be logged in to claim a registry item!";
+        //     header('Location: /registry');
+        //     return;
+        // }
 
         //set user id key in registry item
         $query = 'UPDATE registry_items SET buyer_id = ? WHERE id=?;';
-        query($query, [$_SESSION['user_id'], $_POST['item_id']]);
+        query($query, [isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "-1", $_POST['item_id']]);
         
         $_SESSION['flash_message'] = "Item Claimed!";
         header('Location: /registry');
