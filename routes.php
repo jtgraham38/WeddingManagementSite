@@ -541,9 +541,16 @@ function handle_rsvp() {
             return;
         }
 
+        //ensure additional guests is valid
+        if ($_POST['additional_guests'] < 0 || $_POST['additional_guests'] > 99){
+            $_SESSION['flash_message'] = "Invalid number of additional guests!" ;
+            header("Location: /rsvp");
+            return;
+        }
+
         //insert user into db
-        $query = 'INSERT INTO guests (fname, lname, email, password_hash, phone, attending, admin) VALUES (?, ?, ?, ?, ?, 1, 0);';
-        query($query, [$_POST['fname'], $_POST['lname'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['phone'] ]);
+        $query = 'INSERT INTO guests (fname, lname, email, password_hash, phone, attending, admin, additional_guests) VALUES (?, ?, ?, ?, ?, 1, 0, ?);';
+        query($query, [$_POST['fname'], $_POST['lname'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['phone'], $_POST['additional_guests'] ]);
 
         if (!logged_in()){
             //get id

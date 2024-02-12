@@ -45,6 +45,13 @@
     </div>
 
     <div class="field">
+        <label class="label">Additional Guests (children, spouse, etc.)</label>
+        <div class="control">
+            <input value="0" min="0" max="99" name="additional_guests" id="additional_guests" class="input" type="number" placeholder="Additional Guests" required>
+        </div>
+    </div>
+
+    <div class="field">
         <label class="label">RSVP Code</label>
         <div class="control">
             <input maxlength="2500" name="rsvp_key" id="rsvp_key" class="input" type="password" placeholder="RSVP Code" required>
