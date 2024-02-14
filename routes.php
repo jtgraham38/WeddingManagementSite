@@ -698,7 +698,7 @@ function handle_add_registry_item(){
             $query = 'UPDATE registry_items SET name = ?, source = ?, url = ?, affiliate_url = ?, image_url = ? WHERE id=?;';
             query($query, [$_POST['name'], $_POST['source'], $_POST['url'], $_POST['aff_url'], $_POST['img_url'], $_POST['item_id']]);
 
-            $_SESSION['flash_message'] = "Event updated!";
+            $_SESSION['flash_message'] = "Item updated!";
         }
 
         header('Location: /dashboard/registry');
