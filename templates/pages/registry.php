@@ -5,7 +5,8 @@
 
 <?php 
     if ($items){
-        foreach ($items as $item){ ?>
+        foreach ($items as $item){ 
+            if (get_setting('hide_claimed_registry_items') == 'true' && isset($item['buyer_id'])){ continue; }?>
             <div class="container box">
                 <h3 class="is-size-3"><?= htmlspecialchars($item['name']) ?></h3>
                 <div style="display: flex; justify-content: center;  margin: 1rem 0;">
@@ -49,7 +50,7 @@
                     </form>
                 </div>
             </div>
-        <?php
+            <?php
         }
     }
 ?>
